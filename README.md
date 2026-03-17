@@ -9,7 +9,7 @@ Go to [Releases](https://github.com/sorphwer/zendesk-cli-release/releases) and d
 ## Install (macOS)
 
 1. Download the `.dmg` from the latest release
-2. Open the DMG and double-click **install.command**
+2. Open the DMG, **right-click** `install.command` → click **"Open"** → click **"Open"** again (bypasses macOS Gatekeeper)
 3. Open a **new terminal** window
 4. Run `zendesk init` and enter your Zendesk credentials
 5. Try `zendesk tickets -n 5`
