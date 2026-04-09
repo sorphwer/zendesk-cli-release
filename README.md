@@ -2,24 +2,20 @@
 
 A command-line tool for browsing and searching Zendesk tickets and Help Center docs.
 
-## Download
+## Install
 
-Go to [Releases](https://github.com/sorphwer/zendesk-cli-release/releases) and download the latest DMG for your platform.
+```bash
+curl -fsSL https://raw.githubusercontent.com/sorphwer/zendesk-cli-release/main/install.sh | sh
+```
 
-## Install (macOS)
+This auto-detects your OS (macOS / Linux), downloads the latest release, and installs to `~/.zendesk-cli/`.
 
-1. Download the `.dmg` from the latest release
-2. Open the DMG, double-click `install.command`
-   - If macOS blocks it: open **System Settings** > **Privacy & Security**, scroll down and click **"Open Anyway"** next to the `install.command` warning
-3. Open a **new terminal** window
-4. Run `zendesk init` and enter your Zendesk credentials
-5. Try `zendesk tickets -n 5`
+After install, open a **new terminal** and run:
 
-## What the installer does
-
-- Copies `zendesk` binary to `~/.zendesk-cli/`
-- Adds `~/.zendesk-cli` to your PATH (in `~/.zshrc`)
-- Copies Cursor Agent Skills to `~/.zendesk-cli/skills/`
+```bash
+zendesk init       # Enter your Zendesk credentials
+zendesk tickets -n 5   # Verify it works
+```
 
 ## Usage
 
@@ -32,26 +28,21 @@ zendesk attachment list --ticket 12345    # List attachments
 zendesk docs search --query "password"    # Search Help Center
 ```
 
-## Default output format
+## Output format
 
-The default output is `table` (rich). To change it globally, add to your `~/.zshrc`:
-
-```bash
-export ZENDESK_OUTPUT=text    # plain text, good for piping and LLM input
-# other options: json, csv
-```
-
-Or override per command with `-o`:
+Default is `table` (rich). Change globally:
 
 ```bash
-zendesk tickets -n 5 -o json
+zendesk set-env ZENDESK_OUTPUT text    # plain text, good for piping and LLM input
 ```
+
+Or override per command: `zendesk tickets -n 5 -o json`
 
 ## Platform
 
-| Platform | Status |
-|----------|--------|
-| macOS arm64 (Apple Silicon) | Available |
-| macOS Intel | Not yet |
-| Linux x86_64 | Not yet |
-| Windows | Not yet |
+| Asset | Platform |
+|-------|----------|
+| `zendesk-cli-*-macos-arm64.dmg` | macOS Apple Silicon (Intel via Rosetta 2) |
+| `zendesk-cli-*-linux-amd64.tar.gz` | Linux x86_64 |
+
+Python is **not** required.
