@@ -25,13 +25,10 @@ case "$ARCH" in
     *)             error "Unsupported architecture: $ARCH" ;;
 esac
 
-# macOS builds are arm64 only; Linux builds are amd64 only
+# macOS builds are arm64 only (Intel via Rosetta 2); Linux has native amd64 and arm64
 if [ "$PLATFORM" = "macos" ] && [ "$ARCH_TAG" = "amd64" ]; then
     info "No native x64 build; using arm64 build via Rosetta 2"
     ARCH_TAG="arm64"
-fi
-if [ "$PLATFORM" = "linux" ] && [ "$ARCH_TAG" = "arm64" ]; then
-    error "Linux arm64 builds are not available yet"
 fi
 
 ASSET_PATTERN="zendesk-cli-.*-${PLATFORM}-${ARCH_TAG}"
