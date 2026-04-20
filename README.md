@@ -38,6 +38,16 @@ zendesk set-env ZENDESK_OUTPUT text    # plain text, good for piping and LLM inp
 
 Or override per command: `zendesk tickets -n 5 -o json`
 
+## Download skills only
+
+If you just want the agent skill files (no binary), pull them directly:
+
+```bash
+curl -fsSL https://github.com/sorphwer/zendesk-cli-release/releases/latest/download/skills.tar.gz | tar -xz
+```
+
+This always fetches the skills bundled with the latest release. The tarball contains `use-zendesk-cli/SKILL.md` and supporting files — drop the `use-zendesk-cli/` directory into your agent platform's skills folder (e.g. `~/.claude/skills/`).
+
 ## Platform
 
 | Asset | Platform |
